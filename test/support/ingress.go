@@ -39,3 +39,43 @@ func GetIngress(t Test, namespace, name string) *networkingv1.Ingress {
 func LoadBalancerIngresses(ingress *networkingv1.Ingress) []networkingv1.IngressLoadBalancerIngress {
 	return ingress.Status.LoadBalancer.Ingress
 }
+
+func exposeServiceIngress(t Test, ingressName string, namespace string, serviceName string, servicePort string) *networkingv1.Ingress {
+	prefixType := networkingv1.PathTypePrefix
+	ingress := &networkingv1.Ingress{
+		TypeMeta: metav1.TypeMeta{
+			APIVersion: networkingv1.SchemeGroupVersion.String(),
+			Kind:       "Route",
+		},
+		ObjectMeta: metav1.ObjectMeta{
+			Name:      ingressName,
+			Namespace: namespace,
+		},
+		Spec: networkingv1.IngressSpec{
+			Rules: []networkingv1.IngressRule{
+				networkingv1.IngressRule{
+					IngressRuleValue: networkingv1.IngressRuleValue{
+						HTTP: &networkingv1.HTTPIngressRuleValue{
+							Paths: []networkingv1.HTTPIngressPath{
+								networkingv1.HTTPIngressPath{
+									Path:     "/" + ingressName,
+									PathType: &prefixType,
+									Backend: networkingv1.IngressBackend{
+										Service: &networkingv1.IngressServiceBackend{
+											Name: serviceName,
+											Port: networkingv1.ServiceBackendPort{
+												Name: serviceName,
+											},
+										},
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+	}
+
+	return ingress
+}

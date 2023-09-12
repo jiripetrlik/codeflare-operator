@@ -23,16 +23,6 @@ import (
 
 	"github.com/onsi/gomega"
 	"github.com/onsi/gomega/format"
-
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-)
-
-var (
-	TestTimeoutShort  = 1 * time.Minute
-	TestTimeoutMedium = 2 * time.Minute
-	TestTimeoutLong   = 5 * time.Minute
-
-	ApplyOptions = metav1.ApplyOptions{FieldManager: "codeflare-test", Force: true}
 )
 
 func init() {
