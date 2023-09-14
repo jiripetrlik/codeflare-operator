@@ -6,13 +6,13 @@ Operator for installation and lifecycle management of CodeFlare distributed work
 <!-- Compatibility Matrix start -->
 CodeFlare Stack Compatibility Matrix
 
-| Component                    | Version |
-|------------------------------|---------|
-| CodeFlare Operator           | v0.2.3  |
-| Multi-Cluster App Dispatcher | v1.34.1 |
-| CodeFlare-SDK                | v0.7.1  |
-| InstaScale                   | v0.0.8  |
-| KubeRay                      | v0.5.0  |
+| Component                    | Version | Release Notes                                                                                  |
+|------------------------------|---------|------------------------------------------------------------------------------------------------|
+| CodeFlare Operator           | v0.2.3  | [Link](https://github.com/project-codeflare/codeflare-operator/releases/tag/v0.2.3)            |
+| Multi-Cluster App Dispatcher | v1.34.1 | [Link](https://github.com/project-codeflare/multi-cluster-app-dispatcher/releases/tag/v1.34.1) |
+| CodeFlare-SDK                | v0.7.1  | [Link](https://github.com/project-codeflare/codeflare-sdk/releases/tag/v0.7.1)                 |
+| InstaScale                   | v0.0.8  | [Link](https://github.com/project-codeflare/instascale/releases/tag/v0.0.8)                    |
+| KubeRay                      | v0.5.0  | [Link](https://github.com/ray-project/kuberay/releases/tag/v0.5.0)                                                                                       |
 <!-- Compatibility Matrix end -->
 
 ## Development
