@@ -45,7 +45,7 @@ func exposeServiceIngress(t Test, ingressName string, namespace string, serviceN
 	ingress := &networkingv1.Ingress{
 		TypeMeta: metav1.TypeMeta{
 			APIVersion: networkingv1.SchemeGroupVersion.String(),
-			Kind:       "Route",
+			Kind:       "Ingress",
 		},
 		ObjectMeta: metav1.ObjectMeta{
 			Name:      ingressName,

@@ -23,6 +23,18 @@ import (
 
 	"github.com/onsi/gomega"
 	"github.com/onsi/gomega/format"
+
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+)
+
+var (
+	ApplyOptions = metav1.ApplyOptions{FieldManager: "codeflare-test", Force: true}
+
+	KubernetesHostname = os.Getenv(kuberneteHostnameEnvVar)
+
+	TestTimeoutShort  = 1 * time.Minute
+	TestTimeoutMedium = 2 * time.Minute
+	TestTimeoutLong   = 5 * time.Minute
 )
 
 func init() {

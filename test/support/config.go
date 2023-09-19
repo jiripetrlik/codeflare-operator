@@ -16,19 +16,6 @@ limitations under the License.
 
 package support
 
-import (
-	"os"
-	"time"
-
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-)
-
-var (
-	ApplyOptions = metav1.ApplyOptions{FieldManager: "codeflare-test", Force: true}
-
-	KubernetesHostname = os.Getenv("KUBERNETES_HOSTNAME")
-
-	TestTimeoutShort  = 1 * time.Minute
-	TestTimeoutMedium = 2 * time.Minute
-	TestTimeoutLong   = 5 * time.Minute
+const (
+	kuberneteHostnameEnvVar = "KUBERNETES_HOSTNAME"
 )

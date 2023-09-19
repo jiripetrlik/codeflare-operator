@@ -22,6 +22,6 @@ func ExposeService(t Test, name string, namespace string, serviceName string, se
 		return "http://" + route.Status.Ingress[0].Host
 	} else {
 		exposeServiceIngress(t, namespace, serviceName, name, servicePort)
-		return KubernetesHostname + "/" + name
+		return "http://" + KubernetesHostname + "/" + name
 	}
 }
