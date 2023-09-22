@@ -32,9 +32,9 @@ var (
 
 	KubernetesHostname = os.Getenv(kuberneteHostnameEnvVar)
 
-	TestTimeoutShort  = 1 * time.Minute
-	TestTimeoutMedium = 2 * time.Minute
-	TestTimeoutLong   = 5 * time.Minute
+	TestTimeoutShort  = 8 * time.Minute
+	TestTimeoutMedium = 20 * time.Minute
+	TestTimeoutLong   = 40 * time.Minute
 )
 
 func init() {

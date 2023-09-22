@@ -41,14 +41,14 @@ func GetRoute(t Test, namespace, name string) *routev1.Route {
 	return Route(t, namespace, name)(t)
 }
 
-func ExposeServiceRoute(t Test, namespace string, serviceName string, routeName string, servicePort string) *routev1.Route {
+func ExposeServiceRoute(t Test, name string, namespace string, serviceName string, servicePort string) *routev1.Route {
 	r := &routev1.Route{
 		TypeMeta: metav1.TypeMeta{
 			APIVersion: routev1.SchemeGroupVersion.String(),
 			Kind:       "Route",
 		},
 		ObjectMeta: metav1.ObjectMeta{
-			Name:      routeName,
+			Name:      name,
 			Namespace: namespace,
 		},
 		Spec: routev1.RouteSpec{

@@ -16,12 +16,26 @@ limitations under the License.
 
 package support
 
-func ExposeService(t Test, name string, namespace string, serviceName string, servicePort string) string {
+import "net/url"
+
+func ExposeService(t Test, name string, namespace string, serviceName string, servicePort string) url.URL {
 	if IsOpenShift(t) {
-		route := ExposeServiceRoute(t, namespace, serviceName, name, servicePort)
-		return "http://" + route.Status.Ingress[0].Host
+		route := ExposeServiceRoute(t, name, namespace, serviceName, servicePort)
+		route = GetRoute(t, route.Namespace, route.Name)
+
+		serviceURL := url.URL{
+			Scheme: "http",
+			Host:   route.Status.Ingress[0].Host,
+		}
+
+		return serviceURL
 	} else {
-		exposeServiceIngress(t, namespace, serviceName, name, servicePort)
-		return "http://" + KubernetesHostname + "/" + name
+		ingress := ExposeServiceIngress(t, name, namespace, serviceName, servicePort)
+		serviceURL := url.URL{
+			Scheme: "http",
+			Host:   ingress.Status.LoadBalancer.Ingress[0].IP,
+			Path:   name,
+		}
+		return serviceURL
 	}
 }
