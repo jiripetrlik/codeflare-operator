@@ -44,6 +44,9 @@ jobs:
     - name: Check if MCAD release does exist
       run: |
         status_code=$(curl -s -o /dev/null -w "%{http_code}" https://github.com/project-codeflare/multi-cluster-app-dispatcher/releases/tag/${{ github.event.inputs.mcad-version }})
+        if [[ "$status_code" == "200" ]]; then
+          echo "MCAD release with version {{ github.event.inputs.mcad-version }} already exist. Will not create MCAD release."
+        fi
         echo "MCAD_RELEASE_STATUS_CODE=$status_code" >> $GITHUB_ENV
 
     - name: Release MCAD
@@ -73,6 +76,9 @@ jobs:
     - name: Check if Instascale release does exist
       run: |
         status_code=$(curl -s -o /dev/null -w "%{http_code}" https://github.com/project-codeflare/instascale/releases/tag/${{ github.event.inputs.instascale-version }})
+        if [[ "$status_code" == "200" ]]; then
+          echo "Instascale release with version {{ github.event.inputs.instascale-version }} already exist. Will not create Instascale release."
+        fi
         echo "INSTASCALE_RELEASE_STATUS_CODE=$status_code" >> $GITHUB_ENV
 
     - name: Release InstaScale
@@ -101,6 +107,9 @@ jobs:
     - name: Check if Codeflare SDK release does exist
       run: |
         status_code=$(curl -s -o /dev/null -w "%{http_code}" https://github.com/project-codeflare/codeflare-sdk/releases/tag/${{ github.event.inputs.codeflare-sdk-version }})
+        if [[ "$status_code" == "200" ]]; then
+          echo "SDK release with version {{ github.event.inputs.codeflare-sdk-version }} already exist. Will not create SDK release."
+        fi
         echo "SDK_RELEASE_STATUS_CODE=$status_code" >> $GITHUB_ENV
 
     - name: Release CodeFlare SDK
